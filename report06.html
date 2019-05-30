@@ -13116,7 +13116,8 @@ div#notebook {
 <div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
 </div><div class="inner_cell">
 <div class="text_cell_render border-box-sizing rendered_html">
-<p>問68 英語の文書のcos類似度の比較
+<p>問68<br>
+英語の文書のcos類似度の比較
 uberについて書かれた記事2本とlyftについて書かれた記事1本の類似度を比較してみる。</p>
 <ul>
 <li><p><a href="https://medium.com/free-code-camp/dark-genius-how-programmers-at-uber-volkswagen-and-zenefits-helped-their-employers-break-the-law-b7a7939c6591">uber1.txt</a></p>
@@ -13166,7 +13167,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[168]:</div>
+<div class="prompt input_prompt">In&nbsp;[188]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
@@ -13181,7 +13182,7 @@ Note: you may need to restart the kernel to use updated packages.
         <span class="k">for</span> <span class="n">s_line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">word_list1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">s_line</span><span class="p">))</span>
     <span class="n">word_list1</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">word_list1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">word_list1</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_list1</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">count_f</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">):</span>
     <span class="n">count_list</span> <span class="o">=</span> <span class="p">[]</span>
@@ -13191,7 +13192,7 @@ Note: you may need to restart the kernel to use updated packages.
 <span class="c1">#         t1 = (word, count)</span>
         <span class="n">t1</span> <span class="o">=</span> <span class="n">count</span>
         <span class="n">count_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
-    <span class="k">return</span> <span class="n">count_list</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_list</span><span class="p">)</span>
 
 <span class="k">def</span> <span class="nf">cos</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>    
@@ -13224,12 +13225,12 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[169]:</div>
+<div class="prompt input_prompt">In&nbsp;[189]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">uber1_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber1.txt&#39;</span><span class="p">))</span>
-<span class="n">uber2_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber2.txt&#39;</span><span class="p">))</span>
-<span class="n">lyft1_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;lyft1.txt&#39;</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">uber1_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber1.txt&#39;</span><span class="p">)</span>
+<span class="n">uber2_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber2.txt&#39;</span><span class="p">)</span>
+<span class="n">lyft1_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;lyft1.txt&#39;</span><span class="p">)</span>
 
 <span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">uber1_list</span><span class="p">,</span> <span class="n">uber2_list</span><span class="p">,</span> <span class="n">lyft1_list</span><span class="p">)))</span>
 
@@ -13245,7 +13246,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[170]:</div>
+<div class="prompt input_prompt">In&nbsp;[190]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber1_vec</span><span class="p">)</span>
@@ -13261,7 +13262,7 @@ Note: you may need to restart the kernel to use updated packages.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[170]:</div>
+    <div class="prompt output_prompt">Out[190]:</div>
 
 
 
@@ -13278,7 +13279,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[171]:</div>
+<div class="prompt input_prompt">In&nbsp;[191]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber2_vec</span><span class="p">)</span>
@@ -13294,7 +13295,7 @@ Note: you may need to restart the kernel to use updated packages.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[171]:</div>
+    <div class="prompt output_prompt">Out[191]:</div>
 
 
 
@@ -13311,7 +13312,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[172]:</div>
+<div class="prompt input_prompt">In&nbsp;[192]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="n">uber2_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">)</span>
@@ -13327,7 +13328,7 @@ Note: you may need to restart the kernel to use updated packages.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[172]:</div>
+    <div class="prompt output_prompt">Out[192]:</div>
 
 
 
@@ -13344,7 +13345,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[173]:</div>
+<div class="prompt input_prompt">In&nbsp;[193]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">)</span>
@@ -13360,7 +13361,7 @@ Note: you may need to restart the kernel to use updated packages.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[173]:</div>
+    <div class="prompt output_prompt">Out[193]:</div>
 
 
 
@@ -13394,18 +13395,18 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[178]:</div>
+<div class="prompt input_prompt">In&nbsp;[194]:</div>
 <div class="inner_cell">
     <div class="input_area">
-<div class=" highlight hl-ipython3"><pre><span></span><span class="n">realestate1_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate1.txt&#39;</span><span class="p">))</span>
-<span class="n">realestate2_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate2.txt&#39;</span><span class="p">))</span>
-<span class="n">sports1_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;sports1.txt&#39;</span><span class="p">))</span>
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">realestate1_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate1.txt&#39;</span><span class="p">)</span>
+<span class="n">realestate2_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate2.txt&#39;</span><span class="p">)</span>
+<span class="n">sports1_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;sports1.txt&#39;</span><span class="p">)</span>
 
 <span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">realestate2_list</span><span class="p">,</span> <span class="n">sports1_list</span><span class="p">)))</span>
 
-<span class="n">realestate1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
-<span class="n">realestate2_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">realestate2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
-<span class="n">sports1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">sports1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="n">realestate1_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">realestate2_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">sports1_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">sports1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
 </pre></div>
 
     </div>
@@ -13422,7 +13423,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[179]:</div>
+<div class="prompt input_prompt">In&nbsp;[195]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate1_vec</span><span class="p">)</span>
@@ -13438,7 +13439,7 @@ Note: you may need to restart the kernel to use updated packages.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[179]:</div>
+    <div class="prompt output_prompt">Out[195]:</div>
 
 
 
@@ -13455,7 +13456,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[180]:</div>
+<div class="prompt input_prompt">In&nbsp;[196]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate2_vec</span><span class="p">)</span>
@@ -13471,7 +13472,7 @@ Note: you may need to restart the kernel to use updated packages.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[180]:</div>
+    <div class="prompt output_prompt">Out[196]:</div>
 
 
 
@@ -13488,7 +13489,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[181]:</div>
+<div class="prompt input_prompt">In&nbsp;[197]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">)</span>
@@ -13504,7 +13505,7 @@ Note: you may need to restart the kernel to use updated packages.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[181]:</div>
+    <div class="prompt output_prompt">Out[197]:</div>
 
 
 
@@ -13521,7 +13522,7 @@ Note: you may need to restart the kernel to use updated packages.
 </div>
 <div class="cell border-box-sizing code_cell rendered">
 <div class="input">
-<div class="prompt input_prompt">In&nbsp;[182]:</div>
+<div class="prompt input_prompt">In&nbsp;[198]:</div>
 <div class="inner_cell">
     <div class="input_area">
 <div class=" highlight hl-ipython3"><pre><span></span><span class="n">cos</span><span class="p">(</span><span class="n">realestate2_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">)</span>
@@ -13537,7 +13538,7 @@ Note: you may need to restart the kernel to use updated packages.
 
 <div class="output_area">
 
-    <div class="prompt output_prompt">Out[182]:</div>
+    <div class="prompt output_prompt">Out[198]:</div>
 
 
 
@@ -13568,6 +13569,898 @@ Note: you may need to restart the kernel to use updated packages.
 
 </div>
 </div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>ここでcommon wordを取り除いて考えてみる。<br>
+common wordのリストは以下のサイトに載っているものを利用した。<br>
+<a href="https://www.ef.com/wwen/english-resources/english-vocabulary/top-1000-words/">https://www.ef.com/wwen/english-resources/english-vocabulary/top-1000-words/</a></p>
+<p>またカンマや括弧などの記号、文書の類似度に関係のなさそうな数字も目立ったためこれらも取り除いてみる。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[25]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">word_list</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+    <span class="n">word_list1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">s_line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">word_list1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">s_line</span><span class="p">))</span>
+    <span class="n">word_list1</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">word_list1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_list1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">count_f</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">):</span>
+    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">all_word_list</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">all_word_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">word_list</span> <span class="o">==</span> <span class="n">word</span><span class="p">)</span>
+<span class="c1">#         t1 = (word, count)</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">count</span>
+        <span class="n">count_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_list</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">cos</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">abstract_not_common_word</span><span class="p">(</span><span class="n">target_list</span><span class="p">):</span>
+    <span class="n">common_words_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;common_words.txt&#39;</span><span class="p">)</span>
+    <span class="n">res_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">target_list</span><span class="p">:</span>
+        <span class="n">res_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="ow">not</span><span class="p">(</span><span class="n">i</span> <span class="ow">in</span> <span class="n">common_words_list</span><span class="p">)</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">isalpha</span><span class="p">())</span>
+        
+    <span class="k">return</span> <span class="n">target_list</span><span class="p">[</span><span class="n">res_list</span><span class="p">]</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[nltk_data] Downloading package punkt to
+[nltk_data]     /Users/taishieguchi/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[23]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">realestate1_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate1.txt&#39;</span><span class="p">)</span>
+<span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">realestate1_list</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>
+KeyboardInterrupt
+
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[35]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">realestate1_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate1.txt&#39;</span><span class="p">)</span>
+<span class="n">realestate2_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate2.txt&#39;</span><span class="p">)</span>
+<span class="n">sports1_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;sports1.txt&#39;</span><span class="p">)</span>
+
+<span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">realestate2_list</span><span class="p">,</span> <span class="n">sports1_list</span><span class="p">)))</span>
+
+<span class="n">realestate1_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">realestate2_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">sports1_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">sports1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[36]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="nb">print</span><span class="p">(</span><span class="s1">&#39;取り除かなかった場合&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, realestate1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, realestate2_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate2_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate2_vec, sports1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate2_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, sports1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>取り除かなかった場合
+cos(realestate1_vec, realestate1_vec): 1.0
+cos(realestate1_vec, realestate2_vec): 0.8383622904249884
+cos(realestate2_vec, sports1_vec): 0.7255375589022625
+cos(realestate1_vec, sports1_vec): 0.7632852370301972
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[64]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">realestate1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate1.txt&#39;</span><span class="p">))</span>
+<span class="n">realestate2_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate2.txt&#39;</span><span class="p">))</span>
+<span class="n">sports1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;sports1.txt&#39;</span><span class="p">))</span>
+
+<span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">realestate2_list</span><span class="p">,</span> <span class="n">sports1_list</span><span class="p">)))</span>
+
+<span class="n">realestate1_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">realestate2_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">sports1_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">sports1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;取り除いた場合&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, realestate1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, realestate2_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate2_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate2_vec, sports1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate2_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, sports1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>取り除いた場合
+cos(realestate1_vec, realestate1_vec): 1.0
+cos(realestate1_vec, realestate2_vec): 0.4483906358282693
+cos(realestate2_vec, sports1_vec): 0.11821621346237848
+cos(realestate1_vec, sports1_vec): 0.1559997520720196
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>common wordを取り除くとその差がより明確になった。<br>
+uberとlyftでも検証してみる。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[40]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">uber1_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber1.txt&#39;</span><span class="p">)</span>
+<span class="n">uber2_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber2.txt&#39;</span><span class="p">)</span>
+<span class="n">lyft1_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;lyft1.txt&#39;</span><span class="p">)</span>
+
+<span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">uber1_list</span><span class="p">,</span> <span class="n">uber2_list</span><span class="p">,</span> <span class="n">lyft1_list</span><span class="p">)))</span>
+
+<span class="n">uber1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">uber1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="n">uber2_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">uber2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="n">lyft1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">lyft1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;取り除かなかった場合&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, uber1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, uber2_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber2_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber2_vec, lyft1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber2_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, lyft1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>取り除かなかった場合
+cos(uber1_vec, uber1_vec): 1.0
+cos(uber1_vec, uber2_vec): 0.6395783804293877
+cos(uber2_vec, lyft1_vec): 0.6849740392966016
+cos(uber1_vec, lyft1_vec): 0.7263543672138268
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[70]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">uber1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber1.txt&#39;</span><span class="p">))</span>
+<span class="n">uber2_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber2.txt&#39;</span><span class="p">))</span>
+<span class="n">lyft1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;lyft1.txt&#39;</span><span class="p">))</span>
+
+<span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">uber1_list</span><span class="p">,</span> <span class="n">uber2_list</span><span class="p">,</span> <span class="n">lyft1_list</span><span class="p">)))</span>
+
+<span class="n">uber1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">uber1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="n">uber2_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">uber2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="n">lyft1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">lyft1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;取り除いた場合&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, uber1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, uber2_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber2_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber2_vec, lyft1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber2_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, lyft1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>取り除いた場合
+cos(uber1_vec, uber1_vec): 0.9999999999999999
+cos(uber1_vec, uber2_vec): 0.29304356514021723
+cos(uber2_vec, lyft1_vec): 0.32191127046385176
+cos(uber1_vec, lyft1_vec): 0.24494958586944585
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>idfを使ってみる</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[54]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">from</span> <span class="nn">functools</span> <span class="k">import</span> <span class="n">reduce</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">word_list</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+    <span class="n">word_list1</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">s_line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">word_list1</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">s_line</span><span class="p">))</span>
+    <span class="n">word_list1</span> <span class="o">=</span> <span class="n">reduce</span><span class="p">(</span><span class="k">lambda</span> <span class="n">a</span><span class="p">,</span> <span class="n">b</span><span class="p">:</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span><span class="p">,</span> <span class="n">word_list1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">word_list1</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">count_f</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">):</span>
+    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">all_word_list</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">all_word_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">word_list</span> <span class="o">==</span> <span class="n">word</span><span class="p">)</span>
+<span class="c1">#         t1 = (word, count)</span>
+        <span class="n">t1</span> <span class="o">=</span> <span class="n">count</span>
+        <span class="n">count_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">t1</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_list</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">cos</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">g</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">g</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">abstract_not_common_word</span><span class="p">(</span><span class="n">target_list</span><span class="p">):</span>
+    <span class="n">common_words_list</span> <span class="o">=</span> <span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;common_words.txt&#39;</span><span class="p">)</span>
+    <span class="n">res_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">target_list</span><span class="p">:</span>
+        <span class="n">res_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="ow">not</span><span class="p">(</span><span class="n">i</span> <span class="ow">in</span> <span class="n">common_words_list</span><span class="p">)</span> <span class="ow">and</span> <span class="n">i</span><span class="o">.</span><span class="n">isalpha</span><span class="p">())</span>
+        
+    <span class="k">return</span> <span class="n">target_list</span><span class="p">[</span><span class="n">res_list</span><span class="p">]</span>
+
+<span class="k">def</span> <span class="nf">idf</span><span class="p">(</span><span class="n">list1</span><span class="p">,</span> <span class="n">list2</span><span class="p">,</span> <span class="n">list3</span><span class="p">):</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">list1</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">c</span> <span class="o">=</span> <span class="mf">0.0</span>
+        <span class="k">if</span> <span class="n">list1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mf">1.0</span>
+        <span class="k">if</span> <span class="n">list2</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mf">1.0</span>
+        <span class="k">if</span> <span class="n">list3</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">c</span> <span class="o">+=</span> <span class="mf">1.0</span>
+        <span class="n">list1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">list1</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">log</span><span class="p">((</span><span class="n">c</span><span class="o">+</span><span class="mi">1</span><span class="p">)</span><span class="o">/</span><span class="p">(</span><span class="mi">3</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">list1</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[nltk_data] Downloading package punkt to
+[nltk_data]     /Users/taishieguchi/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>uber2とlyft1が近づいてしまった。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[&nbsp;]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span> 
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[74]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">uber1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber1.txt&#39;</span><span class="p">))</span>
+<span class="n">uber2_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber2.txt&#39;</span><span class="p">))</span>
+<span class="n">lyft1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;lyft1.txt&#39;</span><span class="p">))</span>
+
+<span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">uber1_list</span><span class="p">,</span> <span class="n">uber2_list</span><span class="p">,</span> <span class="n">lyft1_list</span><span class="p">)))</span>
+
+<span class="n">uber1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">uber1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="n">uber2_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">uber2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="n">lyft1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">lyft1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;idfをつけなかった場合&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, uber1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, uber2_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber2_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber2_vec, lyft1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber2_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, lyft1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">))</span>
+
+<span class="n">uber1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber1.txt&#39;</span><span class="p">))</span>
+<span class="n">uber2_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;uber2.txt&#39;</span><span class="p">))</span>
+<span class="n">lyft1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;lyft1.txt&#39;</span><span class="p">))</span>
+
+<span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">uber1_list</span><span class="p">,</span> <span class="n">uber2_list</span><span class="p">,</span> <span class="n">lyft1_list</span><span class="p">)))</span>
+
+<span class="n">uber1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">uber1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="n">uber2_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">uber2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+<span class="n">lyft1_vec</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">lyft1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">))</span>
+
+<span class="n">uber1_idf_vec</span> <span class="o">=</span> <span class="n">idf</span><span class="p">(</span><span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber2_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">)</span>
+<span class="n">uber2_idf_vec</span> <span class="o">=</span> <span class="n">idf</span><span class="p">(</span><span class="n">uber2_vec</span><span class="p">,</span> <span class="n">uber1_vec</span><span class="p">,</span> <span class="n">lyft1_vec</span><span class="p">)</span>
+<span class="n">lyft1_idf_vec</span> <span class="o">=</span> <span class="n">idf</span><span class="p">(</span><span class="n">lyft1_vec</span><span class="p">,</span> <span class="n">uber1_vec</span><span class="p">,</span> <span class="n">uber2_vec</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;idfをつけた場合&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, uber1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_idf_vec</span><span class="p">,</span> <span class="n">uber1_idf_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, uber2_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_idf_vec</span><span class="p">,</span> <span class="n">uber2_idf_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber2_vec, lyft1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber2_idf_vec</span><span class="p">,</span> <span class="n">lyft1_idf_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(uber1_vec, lyft1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">uber1_idf_vec</span><span class="p">,</span> <span class="n">lyft1_idf_vec</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>idfをつけなかった場合
+cos(uber1_vec, uber1_vec): 0.9999999999999999
+cos(uber1_vec, uber2_vec): 0.29304356514021723
+cos(uber2_vec, lyft1_vec): 0.32191127046385176
+cos(uber1_vec, lyft1_vec): 0.24494958586944585
+
+idfをつけた場合
+cos(uber1_vec, uber1_vec): 1.0
+cos(uber1_vec, uber2_vec): 0.05913123959890826
+cos(uber2_vec, lyft1_vec): 0.11809437324333252
+cos(uber1_vec, lyft1_vec): 0.008534859274986486
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[75]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">realestate1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate1.txt&#39;</span><span class="p">))</span>
+<span class="n">realestate2_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate2.txt&#39;</span><span class="p">))</span>
+<span class="n">sports1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;sports1.txt&#39;</span><span class="p">))</span>
+
+<span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">realestate2_list</span><span class="p">,</span> <span class="n">sports1_list</span><span class="p">)))</span>
+
+<span class="n">realestate1_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">realestate2_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">sports1_vec</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">sports1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;idfをつけなかった場合&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, realestate1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, realestate2_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate2_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate2_vec, sports1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate2_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, sports1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">))</span>
+<span class="n">realestate1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate1.txt&#39;</span><span class="p">))</span>
+<span class="n">realestate2_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;realestate2.txt&#39;</span><span class="p">))</span>
+<span class="n">sports1_list</span> <span class="o">=</span> <span class="n">abstract_not_common_word</span><span class="p">(</span><span class="n">word_list</span><span class="p">(</span><span class="s1">&#39;sports1.txt&#39;</span><span class="p">))</span>
+
+<span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">realestate2_list</span><span class="p">,</span> <span class="n">sports1_list</span><span class="p">)))</span>
+
+<span class="n">realestate1_vec_tmp</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">realestate2_vec_tmp</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">realestate2_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">sports1_vec_tmp</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">sports1_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">)</span>
+
+<span class="n">realestate1_vec</span> <span class="o">=</span> <span class="n">idf</span><span class="p">(</span><span class="n">realestate1_vec_tmp</span><span class="p">,</span> <span class="n">realestate2_vec_tmp</span><span class="p">,</span> <span class="n">sports1_vec_tmp</span><span class="p">)</span>
+<span class="n">realestate2_vec</span> <span class="o">=</span> <span class="n">idf</span><span class="p">(</span><span class="n">realestate2_vec_tmp</span><span class="p">,</span> <span class="n">realestate1_vec_tmp</span><span class="p">,</span> <span class="n">sports1_vec_tmp</span><span class="p">)</span>
+<span class="n">sports1_vec</span> <span class="o">=</span> <span class="n">idf</span><span class="p">(</span><span class="n">sports1_vec_tmp</span><span class="p">,</span> <span class="n">realestate1_vec_tmp</span><span class="p">,</span> <span class="n">realestate2_vec_tmp</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;idfをつけた場合&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, realestate1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, realestate2_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">realestate2_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate2_vec, sports1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate2_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">))</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="s2">&quot;cos(realestate1_vec, sports1_vec)&quot;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s2">&quot;: &quot;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">cos</span><span class="p">(</span><span class="n">realestate1_vec</span><span class="p">,</span> <span class="n">sports1_vec</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>idfをつけなかった場合
+cos(realestate1_vec, realestate1_vec): 1.0
+cos(realestate1_vec, realestate2_vec): 0.4483906358282693
+cos(realestate2_vec, sports1_vec): 0.11821621346237848
+cos(realestate1_vec, sports1_vec): 0.1559997520720196
+
+idfをつけた場合
+cos(realestate1_vec, realestate1_vec): 1.0
+cos(realestate1_vec, realestate2_vec): 0.2152572818734065
+cos(realestate2_vec, sports1_vec): 0.036037498507822355
+cos(realestate1_vec, sports1_vec): 0.04986857554914075
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>よりrealestated同士が近づいた。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>問69<br>
+LSIを行ってみる。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[78]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">import</span> <span class="nn">nltk</span>
+<span class="kn">import</span> <span class="nn">re</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+<span class="n">nltk</span><span class="o">.</span><span class="n">download</span><span class="p">(</span><span class="s1">&#39;punkt&#39;</span><span class="p">)</span>
+
+<span class="k">def</span> <span class="nf">sentece_list</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+    <span class="n">sentence_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">s_line</span> <span class="ow">in</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">sentence_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">s_line</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">sentence_list</span>
+
+<span class="k">def</span> <span class="nf">make_x</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+    <span class="n">sentence_list</span> <span class="o">=</span> <span class="n">sentece_list</span><span class="p">(</span><span class="n">file_name</span><span class="p">)</span>
+    <span class="n">all_sentence_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">all_word_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span> <span class="n">sentence_list</span><span class="p">:</span>
+        <span class="n">not_symbol_list</span> <span class="o">=</span> <span class="n">abstract_not_symbol</span><span class="p">(</span><span class="n">sentence_divide</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+        <span class="k">if</span> <span class="n">not_symbol_list</span><span class="o">.</span><span class="n">size</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">all_word_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">not_symbol_list</span><span class="p">)</span>
+            <span class="n">all_sentence_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">not_symbol_list</span><span class="p">)</span>
+    <span class="n">all_sentence_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">(</span><span class="n">all_sentence_list</span><span class="p">)</span>
+    <span class="n">x_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">sentence</span> <span class="ow">in</span>  <span class="n">all_word_list</span><span class="p">:</span>
+        <span class="n">x_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count_f</span><span class="p">(</span><span class="n">sentence</span><span class="p">,</span> <span class="n">all_sentence_list</span><span class="p">))</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">x_list</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="k">def</span> <span class="nf">abstract_not_symbol</span><span class="p">(</span><span class="n">target_list</span><span class="p">):</span>
+    <span class="n">res_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">target_list</span><span class="p">:</span>
+        <span class="n">res_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">isalpha</span><span class="p">())</span>
+    <span class="k">return</span> <span class="n">target_list</span><span class="p">[</span><span class="n">res_list</span><span class="p">]</span>
+        
+<span class="k">def</span> <span class="nf">sentence_divide</span><span class="p">(</span><span class="n">sentence</span><span class="p">):</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">nltk</span><span class="o">.</span><span class="n">word_tokenize</span><span class="p">(</span><span class="n">sentence</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">count_f</span><span class="p">(</span><span class="n">word_list</span><span class="p">,</span> <span class="n">all_word_list</span><span class="p">):</span>
+    <span class="n">count_list</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">all_word_list</span><span class="o">.</span><span class="n">size</span><span class="p">):</span>
+        <span class="n">word</span> <span class="o">=</span> <span class="n">all_word_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="n">count</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">count_nonzero</span><span class="p">(</span><span class="n">word_list</span> <span class="o">==</span> <span class="n">word</span><span class="p">)</span>
+        <span class="n">count_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">count</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">count_list</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stderr output_text">
+<pre>[nltk_data] Downloading package punkt to
+[nltk_data]     /Users/taishieguchi/nltk_data...
+[nltk_data]   Package punkt is already up-to-date!
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>次のセンテンスをSVD分解してみる。</p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[84]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">d1</span> <span class="o">=</span> <span class="s1">&#39;I like computer.&#39;</span>
+<span class="n">d2</span> <span class="o">=</span> <span class="s1">&#39;I like machine.&#39;</span>
+<span class="n">d3</span> <span class="o">=</span> <span class="s1">&#39;I like apple.&#39;</span>
+<span class="n">sentence_divide</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span>
+<span class="n">sentence_divide</span><span class="p">(</span><span class="n">d2</span><span class="p">)</span>
+<span class="n">sentence_divide</span><span class="p">(</span><span class="n">d3</span><span class="p">)</span>
+
+<span class="n">all_word_list</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">unique</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">hstack</span><span class="p">((</span><span class="n">sentence_divide</span><span class="p">(</span><span class="n">d1</span><span class="p">)</span> <span class="p">,</span> <span class="n">sentence_divide</span><span class="p">(</span><span class="n">d2</span><span class="p">),</span> <span class="n">sentence_divide</span><span class="p">(</span><span class="n">d3</span><span class="p">))))</span>
+<span class="n">l1</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">sentence_divide</span><span class="p">(</span><span class="n">d1</span><span class="p">),</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">l2</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">sentence_divide</span><span class="p">(</span><span class="n">d2</span><span class="p">),</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">l3</span> <span class="o">=</span> <span class="n">count_f</span><span class="p">(</span><span class="n">sentence_divide</span><span class="p">(</span><span class="n">d3</span><span class="p">),</span> <span class="n">all_word_list</span><span class="p">)</span>
+<span class="n">all_list</span> <span class="o">=</span> <span class="p">[</span><span class="n">l1</span><span class="p">,</span> <span class="n">l2</span><span class="p">,</span> <span class="n">l3</span><span class="p">]</span>
+<span class="n">x</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">all_list</span><span class="p">)</span><span class="o">.</span><span class="n">T</span>
+
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;U&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;: &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">U</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;s&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;: &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="s1">&#39;V&#39;</span><span class="p">,</span> <span class="n">end</span><span class="o">=</span><span class="s1">&#39;: &#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">V</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">np</span><span class="o">.</span><span class="n">diag</span><span class="p">(</span><span class="n">s</span><span class="p">)),</span> <span class="n">V</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">U</span><span class="p">,</span> <span class="n">U</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">V</span><span class="p">,</span> <span class="n">V</span><span class="o">.</span><span class="n">T</span><span class="p">))</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[1 1 1]
+ [1 1 1]
+ [0 0 1]
+ [1 0 0]
+ [1 1 1]
+ [0 1 0]]
+U: [[-5.47722558e-01 -9.28133183e-18 -1.17457637e-17]
+ [-5.47722558e-01 -9.28133183e-18 -1.17457637e-17]
+ [-1.82574186e-01 -7.07106781e-01  4.08248290e-01]
+ [-1.82574186e-01  5.22860278e-17 -8.16496581e-01]
+ [-5.47722558e-01 -2.84412419e-17  7.08520558e-17]
+ [-1.82574186e-01  7.07106781e-01  4.08248290e-01]]
+s: [3.16227766 1.         1.        ]
+V: [[-0.57735027 -0.57735027 -0.57735027]
+ [-0.          0.70710678 -0.70710678]
+ [-0.81649658  0.40824829  0.40824829]]
+[[ 1.00000000e+00  1.00000000e+00  1.00000000e+00]
+ [ 1.00000000e+00  1.00000000e+00  1.00000000e+00]
+ [-3.46795453e-17  7.28509239e-17  1.00000000e+00]
+ [ 1.00000000e+00  1.01294450e-16 -9.72785220e-18]
+ [ 1.00000000e+00  1.00000000e+00  1.00000000e+00]
+ [-5.50525174e-17  1.00000000e+00  2.75262587e-17]]
+[[ 0.3  0.3  0.1  0.1  0.3  0.1]
+ [ 0.3  0.3  0.1  0.1  0.3  0.1]
+ [ 0.1  0.1  0.7 -0.3  0.1 -0.3]
+ [ 0.1  0.1 -0.3  0.7  0.1 -0.3]
+ [ 0.3  0.3  0.1  0.1  0.3  0.1]
+ [ 0.1  0.1 -0.3 -0.3  0.1  0.7]]
+[[ 1.00000000e+00  5.89014774e-17  6.62768797e-17]
+ [ 5.89014774e-17  1.00000000e+00 -3.70692371e-17]
+ [ 6.62768797e-17 -3.70692371e-17  1.00000000e+00]]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
+</div>
+<div class="cell border-box-sizing text_cell rendered"><div class="prompt input_prompt">
+</div><div class="inner_cell">
+<div class="text_cell_render border-box-sizing rendered_html">
+<p>以下の論文をSVDしてみる。
+<a href="https://queue.acm.org/detail.cfm?id=3321612">https://queue.acm.org/detail.cfm?id=3321612</a></p>
+
+</div>
+</div>
+</div>
+<div class="cell border-box-sizing code_cell rendered">
+<div class="input">
+<div class="prompt input_prompt">In&nbsp;[81]:</div>
+<div class="inner_cell">
+    <div class="input_area">
+<div class=" highlight hl-ipython3"><pre><span></span><span class="n">x</span> <span class="o">=</span> <span class="n">make_x</span><span class="p">(</span><span class="s1">&#39;cs_article.txt&#39;</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="n">U</span><span class="p">,</span> <span class="n">s</span><span class="p">,</span> <span class="n">V</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">svd</span><span class="p">(</span><span class="n">x</span><span class="p">,</span> <span class="n">full_matrices</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+<span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">)</span>
+</pre></div>
+
+    </div>
+</div>
+</div>
+
+<div class="output_wrapper">
+<div class="output">
+
+
+<div class="output_area">
+
+    <div class="prompt"></div>
+
+
+<div class="output_subarea output_stream output_stdout output_text">
+<pre>[[1 0 0 ... 0 0 0]
+ [1 0 0 ... 0 0 0]
+ [1 0 0 ... 0 0 0]
+ ...
+ [0 0 0 ... 0 0 1]
+ [0 1 0 ... 0 1 1]
+ [0 1 0 ... 0 1 1]]
+[6.47939674e+02 2.07666070e+02 1.30352921e+02 1.06857142e+02
+ 1.02528556e+02 7.83366701e+01 7.55658842e+01 6.72394660e+01
+ 5.86674306e+01 5.66937976e+01 5.22863044e+01 5.00232963e+01
+ 4.71757941e+01 4.51682048e+01 3.98331196e+01 3.89736709e+01
+ 3.64840960e+01 3.51670497e+01 3.29756341e+01 3.25784043e+01
+ 3.03715948e+01 2.98550849e+01 2.90008952e+01 2.79982640e+01
+ 2.71358128e+01 2.64232907e+01 2.58010643e+01 2.49118691e+01
+ 2.45103435e+01 2.29111878e+01 2.23604557e+01 2.16685174e+01
+ 2.11064110e+01 2.05447637e+01 1.91634958e+01 1.87057488e+01
+ 1.82491282e+01 1.77822217e+01 1.70118288e+01 1.67673398e+01
+ 1.64170213e+01 1.56815648e+01 1.53665556e+01 1.43682886e+01
+ 1.43224346e+01 1.39919834e+01 1.37865953e+01 1.32528006e+01
+ 1.30822670e+01 1.22250656e+01 1.20407769e+01 1.19585102e+01
+ 1.14596965e+01 1.14409308e+01 1.06636034e+01 1.02592325e+01
+ 9.91478456e+00 9.85118211e+00 9.70690834e+00 9.30555175e+00
+ 9.19287107e+00 8.65940716e+00 8.43741992e+00 8.19365995e+00
+ 7.69205443e+00 7.58361434e+00 7.18100204e+00 7.05900241e+00
+ 6.92594887e+00 6.34661423e+00 6.30111804e+00 6.19890266e+00
+ 6.06190867e+00 5.62712677e+00 5.48806509e+00 4.83580054e+00
+ 4.48147509e+00 4.02088519e+00 3.59980347e+00 3.45225037e+00
+ 3.09181564e+00 2.94082927e+00 2.80410257e+00 2.44702306e+00
+ 2.16108453e+00 2.11120942e+00 1.93631056e+00 1.53733283e+00
+ 1.41421356e+00 1.00000000e+00 5.19077655e-14 9.78715931e-15]
+</pre>
+</div>
+</div>
+
+</div>
+</div>
+
 </div>
     </div>
   </div>
